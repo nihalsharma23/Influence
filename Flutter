@@ -1,0 +1,86 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  // Declare variables to store input from the form
+  String _webinarTitle = '';
+  String _eventDate = '';
+  String _eventTime = '';
+  double _ticketPrice = 0.0;
+  String _hostPlatform = '';
+
+  // Declare a list of platforms to display in the dropdown menu
+  List<String> _platforms = [    'Zoom',    'YouTube',    'Instagram',    'Telegram',    'Email',    'WhatsApp Community'  ];
+
+  // Declare a controller for the form
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Influencer Webinar Forum'),
+        ),
+        body: Container(
+          padding: EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                // Webinar title input field
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Webinar Title'),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter a webinar title';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => _webinarTitle = value,
+                ),
+                // Event date input field
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Event Date (YYYY-MM-DD)'),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter an event date';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => _eventDate = value,
+                ),
+                // Event time input field
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Event Time (HH:MM)'),
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter an event time';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => _eventTime = value,
+                ),
+                // Ticket price input field
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Ticket Price'),
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter a ticket price';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) => _ticketPrice = double.parse(value),
+                ),
+                // Host platform dropdown menu
+                DropdownButtonFormField(
+                  decoration: Input
