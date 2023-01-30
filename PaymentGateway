@@ -1,0 +1,29 @@
+import requests
+
+# Function to collect payment
+def collect_payment(user_id, amount):
+    service_fee = amount * 0.05
+    total_amount = amount + service_fee
+
+    # Payment gateway API endpoint
+    url = "https://example.com/charge"
+
+    # Payment gateway API credentials
+    api_key = "sk_test_123456"
+    headers = {"Authorization": "Bearer " + api_key}
+
+    # Payment data
+    data = {
+        "user_id": user_id,
+        "amount": total_amount
+    }
+
+    # Send charge request to payment gateway
+    response = requests.post(url, headers=headers, json=data)
+
+    # Return response from payment gateway
+    return response.json()
+
+# Test collect_payment function
+response = collect_payment("user_123", 100)
+print(response)
